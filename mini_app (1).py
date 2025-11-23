@@ -4,7 +4,7 @@ import plotly.express as px
 
 st.set_page_config(page_title="Kerala Pollution Dashboard", layout="wide")
 
-DATA_PATH = "df_final.csv"
+DATA_PATH = "https://drive.google.com/file/d/1M6I2ku_aWGkWz0GypktKXeRJPjNhlsM2/view?usp=sharing"
 
 @st.cache_data
 def load_data():
