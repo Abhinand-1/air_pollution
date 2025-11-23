@@ -5,4 +5,3 @@ pykrige
 numpy
 scipy
 shapely
-
