@@ -28,8 +28,7 @@ def load_data():
 # ------------------------------------------------
 @st.cache_data
 def load_kerala_boundary():
-    url = "https://raw.githubusercontent.com/Abhinand-1/air_pollution/main/kerala_boundary.geojson
-"
+    url = "https://raw.githubusercontent.com/Abhinand-1/air_pollution/main/kerala_boundary.geojson"
     kerala = gpd.read_file(url)
     kerala = kerala.to_crs("EPSG:4326")
     return kerala
