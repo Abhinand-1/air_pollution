@@ -8,12 +8,22 @@ DATA_PATH = "https://drive.google.com/file/d/1M6I2ku_aWGkWz0GypktKXeRJPjNhlsM2/v
 
 @st.cache_data
 def load_data():
-    df = pd.read_csv(DATA_PATH)
+    import os
+
+    # safely build the path relative to this Python file (app.py)
+    csv_path = os.path.join(os.path.dirname(__file__), "df_final.csv")
+
+    # load the CSV
+    df = pd.read_csv(csv_path)
+
+    # fix date column
     df["date"] = pd.to_datetime(df["date"], errors="coerce")
     df = df.dropna(subset=["date"])
+
     return df
 
 df = load_data()
+
 
 st.sidebar.header("Controls")
 pollutant = st.sidebar.selectbox("Select Pollutant", ["AOD","NO2","SO2","CO","O3"])
