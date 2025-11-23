@@ -45,15 +45,17 @@ def load_data():
 # ---------------------------------------------------------------------
 @st.cache_data
 def load_kerala_polygon():
-    if not os.path.exists(BOUNDARY_PATH):
-        st.error(f"Kerala boundary file not found at: {BOUNDARY_PATH}")
+    boundary_path = "/mnt/data/state (1).geojson"   # correct path
+
+    if not os.path.exists(boundary_path):
+        st.error(f"Kerala boundary file not found at: {boundary_path}")
         st.stop()
 
-    # Load local geojson
-    with open(BOUNDARY_PATH, "r", encoding="utf-8") as f:
-        gj = json.load(f)
+    # Load the local geojson file
+    with open(boundary_path, "r", encoding="utf-8") as f:
+        geo = json.load(f)
 
-    features = gj["features"] if "features" in gj else [gj]
+    features = geo["features"] if "features" in geo else [geo]
 
     polys = []
     for feat in features:
@@ -61,7 +63,9 @@ def load_kerala_polygon():
         if isinstance(geom, (Polygon, MultiPolygon)):
             polys.append(geom)
 
+    from shapely.ops import unary_union
     return unary_union(polys)
+
 
 
 def clip_points(df, polygon):
