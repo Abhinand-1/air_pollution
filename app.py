@@ -18,7 +18,7 @@ DATA_URL = "https://drive.google.com/uc?id=1M6I2ku_aWGkWz0GypktKXeRJPjNhlsM2"
 LOCAL_FILE = "kerala_pollution.csv"
 
 # Kerala boundary uploaded earlier
-BOUNDARY_PATH = "/mnt/data/state (1).geojson"
+BOUNDARY_PATH = "kerala_boundary.geojson"
 
 
 @st.cache_data
