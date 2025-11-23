@@ -46,7 +46,7 @@ def load_data():
 def load_kerala_polygon():
 
     # USE LOCAL FILE YOU UPLOADED
-    boundary_path = "/mnt/data/state (1).geojson"
+    boundary_path = "kerala_boundary.geojson"
 
     # Check if file exists
     if not os.path.exists(boundary_path):
