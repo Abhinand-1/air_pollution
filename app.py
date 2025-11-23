@@ -44,17 +44,21 @@ def load_data():
 # ---------------------------------------------------------------------
 @st.cache_data
 def load_kerala_polygon():
-    boundary_path = "https://github.com/Abhinand-1/air_pollution/blob/aaeae822d8a43dfa685f5ce74d2712960663a9a4/kerala_boundary.geojson"   # correct path
 
+    # USE LOCAL FILE YOU UPLOADED
+    boundary_path = "/mnt/data/state (1).geojson"
+
+    # Check if file exists
     if not os.path.exists(boundary_path):
         st.error(f"Kerala boundary file not found at: {boundary_path}")
         st.stop()
 
     # Load the local geojson file
     with open(boundary_path, "r", encoding="utf-8") as f:
-        geo = json.load(f)
+        gj = json.load(f)
 
-    features = geo["features"] if "features" in geo else [geo]
+    # Extract polygons
+    features = gj["features"] if "features" in gj else [gj]
 
     polys = []
     for feat in features:
@@ -62,8 +66,8 @@ def load_kerala_polygon():
         if isinstance(geom, (Polygon, MultiPolygon)):
             polys.append(geom)
 
-    from shapely.ops import unary_union
     return unary_union(polys)
+
 
 
 
