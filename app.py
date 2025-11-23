@@ -7,6 +7,9 @@ from shapely.geometry import shape, Point, Polygon, MultiPolygon
 from pykrige.ok import OrdinaryKriging
 import plotly.express as px
 
+import gdown
+import os
+
 st.set_page_config(page_title="Kerala Pollution Dashboard (Kriging)", layout="wide")
 
 # ---------------------------------------------------------------------
