@@ -5,21 +5,44 @@ import plotly.express as px
 st.set_page_config(page_title="Kerala Pollution Dashboard", layout="wide")
 
 @st.cache_data
-def load_data():
+def load_kerala_boundary():
+    # Replace this with your real GeoJSON once uploaded
+    boundary_url = "https://raw.githubusercontent.com/Abhinand-1/air_pollution/main/kerala_boundary.geojson"
 
-    # Direct download link (correct format)
-    gdrive_url = "https://drive.google.com/uc?id=1M6I2ku_aWGkWz0GypktKXeRJPjNhlsM2"
+    kerala = gpd.read_file(boundary_url)
+    kerala = kerala.to_crs("EPSG:4326")  # ensure proper CRS
+    return kerala
 
-    # load the CSV from Google Drive
-    df = pd.read_csv(gdrive_url)
 
-    # fix date column
-    df["date"] = pd.to_datetime(df["date"], errors="coerce")
-    df = df.dropna(subset=["date"])
+# ------------------------------------------------
+# 3️⃣ CLIP POINTS TO KERALA ONLY
+# ------------------------------------------------
+@st.cache_data
+def clip_to_kerala(df):
 
-    return df
+    kerala = load_kerala_boundary()
 
+    # Convert your lat/lon to GeoDataFrame
+    gdf = gpd.GeoDataFrame(
+        df,
+        geometry=gpd.points_from_xy(df["lon"], df["lat"]),
+        crs="EPSG:4326"
+    )
+
+    # Clip (keep only points inside Kerala)
+    clipped = gpd.sjoin(gdf, kerala, how="inner", predicate="within")
+
+    # Drop geometry if not needed
+    clipped = clipped.drop(columns=["geometry", "index_right"], errors="ignore")
+
+    return clipped
+
+
+# ------------------------------------------------
+# 4️⃣ LOAD + CLIP
+# ------------------------------------------------
 df = load_data()
+df = clip_to_kerala(df)
 
 
 
