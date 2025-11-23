@@ -13,7 +13,8 @@ st.set_page_config(page_title="Kerala Pollution Dashboard (with Kriging)", layou
 # ------------------------------------------------------------------
 # CONFIG - update if you host files elsewhere
 # Use the exact local paths you uploaded:
-DATA_PATH = "https://drive.google.com/file/d/1M6I2ku_aWGkWz0GypktKXeRJPjNhlsM2/view?usp=drive_link"
+DATA_PATH = "https://drive.google.com/uc?id=1M6I2ku_aWGkWz0GypktKXeRJPjNhlsM2"
+
 BOUNDARY_PATH = "https://raw.githubusercontent.com/Abhinand-1/air_pollution/main/kerala_boundary.geojson"
 
 # ------------------------------------------------------------------
