@@ -45,7 +45,7 @@ def load_data():
 # ---------------------------------------------------------------------
 @st.cache_data
 def load_kerala_polygon():
-    boundary_path = "/mnt/data/state (1).geojson"   # correct path
+    boundary_path = "https://github.com/Abhinand-1/air_pollution/blob/aaeae822d8a43dfa685f5ce74d2712960663a9a4/kerala_boundary.geojson"   # correct path
 
     if not os.path.exists(boundary_path):
         st.error(f"Kerala boundary file not found at: {boundary_path}")
