@@ -17,7 +17,8 @@ st.set_page_config(page_title="Kerala Pollution Dashboard (Kriging)", layout="wi
 # ---------------------------------------------------------------------
 DATA_URL = "https://drive.google.com/uc?id=1M6I2ku_aWGkWz0GypktKXeRJPjNhlsM2"
 LOCAL_FILE = "kerala_pollution.csv"
-BOUNDARY_PATH = "https://raw.githubusercontent.com/Abhinand-1/air_pollution/main/kerala_boundary.geojson"
+BOUNDARY_PATH = BOUNDARY_PATH = "/mnt/data/state (1).geojson"
+
 
 
 @st.cache_data
