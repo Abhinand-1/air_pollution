@@ -4,17 +4,14 @@ import plotly.express as px
 
 st.set_page_config(page_title="Kerala Pollution Dashboard", layout="wide")
 
-DATA_PATH = "https://drive.google.com/file/d/1M6I2ku_aWGkWz0GypktKXeRJPjNhlsM2/view?usp=sharing"
-
 @st.cache_data
 def load_data():
-    import os
 
-    # safely build the path relative to this Python file (app.py)
-    csv_path = os.path.join(os.path.dirname(__file__), "https://drive.google.com/file/d/1M6I2ku_aWGkWz0GypktKXeRJPjNhlsM2/view?usp=sharing")
+    # Direct download link (correct format)
+    gdrive_url = "https://drive.google.com/uc?id=1M6I2ku_aWGkWz0GypktKXeRJPjNhlsM2"
 
-    # load the CSV
-    df = pd.read_csv(csv_path)
+    # load the CSV from Google Drive
+    df = pd.read_csv(gdrive_url)
 
     # fix date column
     df["date"] = pd.to_datetime(df["date"], errors="coerce")
@@ -23,6 +20,7 @@ def load_data():
     return df
 
 df = load_data()
+
 
 
 st.sidebar.header("Controls")
